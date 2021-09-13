@@ -94,28 +94,30 @@ export class SliderBox extends Component {
           onPress={this.onCurrentImagePressedHandler}
           activeOpacity={activeOpacity}
         >
-          <ImageComponent
-            style={[
-              {
-                width: "100%",
-                height: sliderBoxHeight || 200,
-                alignSelf: "center",
-              },
-              ImageComponentStyle,
-            ]}
-            source={typeof item === "string" ? { uri: item } : item}
-            resizeMethod={resizeMethod || "resize"}
-            resizeMode={resizeMode || "cover"}
-            //onLoad={() => {}}
-            //onLoadStart={() => {}}
-            onLoadEnd={() => {
-              let t = this.state.loading;
-              t[index] = true;
-              this.setState({ loading: t });
-            }}
-            {...this.props}
-          />
-          <DataContainer style={DataContainerStyle} />
+          <>
+            <ImageComponent
+              style={[
+                {
+                  width: "100%",
+                  height: sliderBoxHeight || 200,
+                  alignSelf: "center",
+                },
+                ImageComponentStyle,
+              ]}
+              source={typeof item === "string" ? { uri: item } : item}
+              resizeMethod={resizeMethod || "resize"}
+              resizeMode={resizeMode || "cover"}
+              //onLoad={() => {}}
+              //onLoadStart={() => {}}
+              onLoadEnd={() => {
+                let t = this.state.loading;
+                t[index] = true;
+                this.setState({ loading: t });
+              }}
+              {...this.props}
+            />
+            <DataContainer style={DataContainerStyle} />
+          </>
         </TouchableHighlight>
         {!this.state.loading[index] && (
           <LoaderComponent
